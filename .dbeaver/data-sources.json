@@ -1,0 +1,30 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-17c9b5b6967-348c305d5d853eb7": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "tierramedia.db",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "C:\\Users\\josel\\eclipse-workspace\\conexion_db_agenciadeturismo\\tierramedia.db",
+				"url": "jdbc:sqlite:C:\\Users\\josel\\eclipse-workspace\\conexion_db_agenciadeturismo\\tierramedia.db",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
