@@ -1,5 +1,8 @@
 bin/
+target/
 .settings
 .idea
 *.iml
 .classpath
+.dbeaver/
+Scripts/
