@@ -3,7 +3,7 @@ package jdbc;
 import java.sql.*;
 
 public class ConnectionProvider {
-    private static String url = "jdbc:sqlite:C:\\Users\\blion\\Documents\\proyectosJosy\\Agencia-de-viaje-DB\\tierramedia2.db";
+    private static String url = "jdbc:sqlite:C:\\Users\\Luis\\eclipse-workspace\\Agencia-de-viaje-DB\\tierramedia.db";
     private static Connection connection;
 
     public static Connection getConnection() throws SQLException {
