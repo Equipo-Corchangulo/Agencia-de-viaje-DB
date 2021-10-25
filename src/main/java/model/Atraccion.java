@@ -1,5 +1,9 @@
 package model;
 
+import java.sql.SQLException;
+
+import dao.AtraccionesDAO;
+
 public class Atraccion implements Facturable {
 
 	private double costoVisita;
@@ -25,7 +29,7 @@ public class Atraccion implements Facturable {
 	@Override
 	public String toString() {
 		return "Atraccion: " + nombre + ", duracion: " + tiempoPromedio + ", costo: " + costoVisita +
-				" tipo de atraccion: " + tipoAtraccion  + "\n";
+				" tipo de atraccion: " + tipoAtraccion  + " cupo "+ cupoDiario +"\n";
 
 	}
 
@@ -48,8 +52,9 @@ public class Atraccion implements Facturable {
 	}
 
 	@Override
-	public void restarCupo() {
+	public void restarCupo() throws SQLException {
 		this.cupoDiario--;
+		AtraccionesDAO.editarCupoDeAtraccion(this.ID, this.cupoDiario);
 
 	}
 

@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class PromoAxB extends Promocion {
@@ -26,7 +27,7 @@ public class PromoAxB extends Promocion {
 	}
 
 	@Override
-	public void restarCupo() {
+	public void restarCupo() throws SQLException {
 		super.restarCupo();
 		atraccionExtra.restarCupo();
 	}

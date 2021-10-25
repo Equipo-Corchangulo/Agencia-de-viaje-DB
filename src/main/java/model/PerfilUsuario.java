@@ -1,6 +1,7 @@
 package model;
 
 
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class PerfilUsuario {
@@ -69,7 +70,7 @@ public class PerfilUsuario {
 		return Objects.hash(getPresupuesto(), getTiempoDisponible(), getNombre(), getTipoDeAtraccion());
 	}
 
-	public void agregarAtraccion(Facturable atraccion) {
+	public void agregarAtraccion(Facturable atraccion) throws SQLException {
 		this.itinerario.agregarAtraccion(atraccion);
 		atraccion.restarCupo();
 		this.reservarTiempoYdinero(atraccion);

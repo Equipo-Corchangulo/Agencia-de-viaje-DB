@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.SQLException;
+
 public interface Facturable {
 
 	 double obtenerCostoTotal();
@@ -8,7 +10,7 @@ public interface Facturable {
 
 	 boolean hayCupo();
 
-	 void restarCupo();
+	 void restarCupo() throws SQLException;
 
 	 boolean esPromocion();
 

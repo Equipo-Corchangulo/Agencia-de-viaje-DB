@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public abstract class Promocion  implements Facturable {
@@ -49,7 +50,7 @@ public abstract class Promocion  implements Facturable {
 	}
 
 	@Override
-	public void restarCupo() {
+	public void restarCupo() throws SQLException {
 		for(Facturable atraccion : listaDeAtracciones){
 			atraccion.restarCupo();
 		}

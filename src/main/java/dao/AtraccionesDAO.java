@@ -5,6 +5,7 @@ import model.Atraccion;
 import model.TipoDeAtraccion;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +17,12 @@ public class AtraccionesDAO {
 
     private static Atraccion toAtraccion(ResultSet result) throws SQLException {
         return new Atraccion(result.getString("nombre"), result.getDouble("costo_visita"),
-                result.getDouble("costo_visita"), result.getInt("cupo_diario"),
-                TipoDeAtraccion.values()[result.getInt("tipo")-1], result.getInt("id"));
+                result.getDouble("tiempo_promedio"), result.getInt("cupo_diario"),
+                TipoDeAtraccion.valueOf((result.getString("nombre_tipo"))), result.getInt("id"));
     }
 
     public static List<Atraccion> findAll() throws SQLException {
-        String query = "SELECT * FROM atracciones";
+        String query = "SELECT * FROM atracciones LEFT JOIN tipo_de_atracciones ON tipo_de_atracciones.id = atracciones.tipo";
         List<Atraccion> listaAtracciones = new ArrayList<Atraccion>();
         ResultSet result = ConnectionProvider.executeQuery(query);
         while (result.next()) {
@@ -32,7 +33,7 @@ public class AtraccionesDAO {
     }
     
     public static Atraccion findByID(int id) throws SQLException {
-    	String query = "SELECT * FROM atracciones where id = " + id;
+    	String query = "SELECT * FROM atracciones LEFT JOIN tipo_de_atracciones ON tipo_de_atracciones.id = atracciones.tipo where atracciones.id = " + id;
     	Optional atraccionEncontrada =  atraccionList.stream().filter(atraccion -> atraccion.getID() == id).findFirst();
     	if (atraccionEncontrada.isPresent()) {
     		return (Atraccion) atraccionEncontrada.get();
@@ -42,4 +43,10 @@ public class AtraccionesDAO {
     		return toAtraccion(result);
     	}
     }
+    
+    public static void editarCupoDeAtraccion(int id, int nuevoCupo) throws SQLException {
+    	String query = "update atracciones SET cupo_diario = " + nuevoCupo + " WHERE id = " + id;
+    	ConnectionProvider.executeUpdate(query);
+    }
+    
 }
