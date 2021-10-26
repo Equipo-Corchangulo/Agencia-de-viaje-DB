@@ -1,7 +1,10 @@
 package app;
 
 import dao.AtraccionesDAO;
+import dao.PromocionDAO;
 import model.Atraccion;
+import model.Facturable;
+import model.Promocion;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,6 +27,12 @@ public class App {
 		
 		System.out.println("ahora buscar");
 		System.out.println(AtraccionesDAO.findByID(5));
+		
+		List<Promocion> promos = PromocionDAO.findAll();
+		for (Promocion p : promos) {
+			System.out.println(p);
+		}
+		
 	}
 
 }

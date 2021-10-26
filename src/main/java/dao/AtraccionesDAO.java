@@ -5,14 +5,12 @@ import model.Atraccion;
 import model.TipoDeAtraccion;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class AtraccionesDAO {
-    private static String tableName = "atracciones";
     private static List<Atraccion> atraccionList = new ArrayList<Atraccion>();
 
     private static Atraccion toAtraccion(ResultSet result) throws SQLException {
@@ -34,7 +32,7 @@ public class AtraccionesDAO {
     
     public static Atraccion findByID(int id) throws SQLException {
     	String query = "SELECT * FROM atracciones LEFT JOIN tipo_de_atracciones ON tipo_de_atracciones.id = atracciones.tipo where atracciones.id = " + id;
-    	Optional atraccionEncontrada =  atraccionList.stream().filter(atraccion -> atraccion.getID() == id).findFirst();
+    	Optional<Atraccion> atraccionEncontrada =  atraccionList.stream().filter(atraccion -> atraccion.getID() == id).findFirst();
     	if (atraccionEncontrada.isPresent()) {
     		return (Atraccion) atraccionEncontrada.get();
     	}
