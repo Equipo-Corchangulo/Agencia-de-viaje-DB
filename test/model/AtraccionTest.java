@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class AtraccionTest {
     }
 
     @Test
-    public void restarCupoTest() {
+    public void restarCupoTest() throws SQLException {
         atraccionMoria.restarCupo();
     	assertEquals(5, atraccionMoria.getCupo());
     	atraccionMinasTirith.restarCupo();

@@ -1,5 +1,6 @@
 package app;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -50,12 +51,12 @@ public class Recomendador {
 
 	}
 
-	public void ofrecerSugerencias() {
+	public void ofrecerSugerencias() throws SQLException {
 
 		for(PerfilUsuario usuario : listaDeUsuarios) {
-			System.out.println(ANSI_CYAN+"-------------------------------");
-			System.out.println(ANSI_CYAN+usuario);
-			System.out.println(ANSI_CYAN+"-------------------------------");
+			System.out.println("-------------------------------");
+			System.out.println(usuario);
+			System.out.println("-------------------------------");
 			System.out.println();
 
 			Collections.sort(listaDeFacturables, new ComparadorDeFacturable(usuario.getTipoDeAtraccion()));
@@ -66,14 +67,14 @@ public class Recomendador {
 		}
 	}
 	
-	public void iterarSugerencias(PerfilUsuario usuario) {
+	public void iterarSugerencias(PerfilUsuario usuario) throws SQLException {
 		for (Facturable atraccion :listaDeFacturables) {
 			if (!usuario.tieneTiempoYdinero()){
 				return;
 			}
 			else if(usuario.puedeComprar(atraccion)){
 
-				System.out.println(ANSI_WHITE+ atraccion);
+				System.out.println(atraccion);
 	
 				//si el usuario lo quiere la agregamos al itinerario
 				if(leer()) {

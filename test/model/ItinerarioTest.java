@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,21 +27,21 @@ public class ItinerarioTest {
 	  
 
 	@Test
-	public void getHorasNecesariasTest() {
+	public void getHorasNecesariasTest() throws SQLException {
 		usuario.agregarAtraccion(atraccionMoria);
 		usuario.agregarAtraccion(atraccionBosqueNegro);
 		assertEquals(6, usuario.getItinerario().getHorasNecesarias(), 0);
 	}
 	
 	@Test
-	public void getCostoMonedasTest() {
+	public void getCostoMonedasTest() throws SQLException {
 		usuario.agregarAtraccion(atraccionMoria);
 		usuario.agregarAtraccion(atraccionBosqueNegro);
 		assertEquals(13, usuario.getItinerario().getCostoMonedas(), 0);
 	}
 	
 	@Test
-	public void poseeAtraccionTest() {
+	public void poseeAtraccionTest() throws SQLException {
 		atraccion.add(atraccionMoria);
 		atraccion.add(atraccionBosqueNegro);
 		atraccionDePromo.add(atraccionMoria);
@@ -57,7 +58,7 @@ public class ItinerarioTest {
 	}
 	   
 	@Test 	   
-	public void poseeAtraccionTest2() {
+	public void poseeAtraccionTest2() throws SQLException {
 		atraccion.add(atraccionMoria);
 		atraccion.add(atraccionBosqueNegro);
 		Facturable promoPorcentual = new PromoPorcentual(atraccion,TipoDeAtraccion.AVENTURA , "Promo 1", 0.5);

@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.Assert.assertFalse;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class PuedeComprarTest {
 			
 	@Test
 	
-	public void test01() {
+	public void test01() throws SQLException {
 		lista01.add(a1);
 		lista01.add(a2);
 
@@ -34,7 +35,7 @@ public class PuedeComprarTest {
 	}
 	
 	@Test
-	public void test02() {
+	public void test02() throws SQLException {
 		lista01.add(a1);
 		lista01.add(a3);
 
@@ -43,7 +44,7 @@ public class PuedeComprarTest {
 	}
 	
 	@Test
-	public void test03() {
+	public void test03() throws SQLException {
 		lista01.add(a2);
 		lista01.add(a4);
 

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class PromoAxBTest {
 	}
 	
 	@Test
-	public void restarCupoTest() {
+	public void restarCupoTest() throws SQLException {
 		atraccion.add(atraccionSpecial);
 		promoAxB.restarCupo();
 		assertTrue(atraccionSpecial.hayCupo());
