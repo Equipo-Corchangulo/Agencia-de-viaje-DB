@@ -2,15 +2,17 @@ package model;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import org.junit.Test;
 
 
 public class PerfilUsuarioTest {
 
-		PerfilUsuario Eowyn = new PerfilUsuario("Eowyn", 10, 8, TipoDeAtraccion.AVENTURA);
-		PerfilUsuario Gandalf = new PerfilUsuario("Gandalf", 100, 5, TipoDeAtraccion.PAISAJE);
-		PerfilUsuario Sam = new PerfilUsuario("Sam", 36, 8, TipoDeAtraccion.DEGUSTACION);
-		PerfilUsuario Galadriel = new PerfilUsuario("Galadriel", 0, 6, TipoDeAtraccion.PAISAJE);
+		PerfilUsuario Eowyn = new PerfilUsuario("Eowyn", 10, 8, TipoDeAtraccion.AVENTURA,1);
+		PerfilUsuario Gandalf = new PerfilUsuario("Gandalf", 100, 5, TipoDeAtraccion.PAISAJE,2);
+		PerfilUsuario Sam = new PerfilUsuario("Sam", 36, 8, TipoDeAtraccion.DEGUSTACION,3);
+		PerfilUsuario Galadriel = new PerfilUsuario("Galadriel", 0, 6, TipoDeAtraccion.PAISAJE,4);
 	
 	        Atraccion atraccionMoria = new Atraccion("Aventura", 10, 2, 6, TipoDeAtraccion.AVENTURA,0);
 	        Atraccion atraccionMinasTirith = new Atraccion("Paisaje", 15, 2.5, 25, TipoDeAtraccion.PAISAJE,1);
@@ -49,7 +51,7 @@ public class PerfilUsuarioTest {
 	}
 	
 	@Test
-	public void reservarTiempoYDineroTest() {
+	public void reservarTiempoYDineroTest() throws SQLException {
 		Eowyn.reservarTiempoYdinero(atraccionLaComarca);
 		assertEquals(7, Eowyn.getPresupuesto(), 0);
 		assertEquals(1.5, Eowyn.getTiempoDisponible(), 0);		

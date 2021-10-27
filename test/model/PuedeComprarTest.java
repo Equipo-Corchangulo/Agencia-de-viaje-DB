@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class PuedeComprarTest {
 	
-			public PerfilUsuario u1 = new PerfilUsuario("pepito", 100, 100, TipoDeAtraccion.AVENTURA);
+			public PerfilUsuario u1 = new PerfilUsuario("pepito", 100, 100, TipoDeAtraccion.AVENTURA,1);
 			
 	 		public Facturable a1 = new Atraccion ("a1", 10, 3, 1, TipoDeAtraccion.AVENTURA,0);
 			public Facturable a2 = new Atraccion ("a2", 4, 2.5, 1, TipoDeAtraccion.AVENTURA,1);

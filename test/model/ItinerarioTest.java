@@ -22,7 +22,7 @@ public class ItinerarioTest {
 	
 	public List<Facturable> atraccionDePromo = new ArrayList<Facturable>();
 	
-	public PerfilUsuario usuario = new PerfilUsuario("Irina", 1000, 100, TipoDeAtraccion.AVENTURA);
+	public PerfilUsuario usuario = new PerfilUsuario("Irina", 1000, 100, TipoDeAtraccion.AVENTURA, 1);
 	
 	  
 

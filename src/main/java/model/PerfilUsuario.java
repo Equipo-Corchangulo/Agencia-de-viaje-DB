@@ -4,6 +4,8 @@ package model;
 import java.sql.SQLException;
 import java.util.Objects;
 
+import dao.UsuariosDAO;
+
 public class PerfilUsuario {
 
 	private double presupuesto;
@@ -12,13 +14,15 @@ public class PerfilUsuario {
 	private String nombre;
 	private TipoDeAtraccion tipoDeAtraccion;
 	private Itinerario itinerario;
+	private int id;
 
-	public PerfilUsuario(String nombre, double presupuesto, int tiempoDisponible, TipoDeAtraccion tipoDeAtraccion) {
+	public PerfilUsuario(String nombre, double presupuesto, int tiempoDisponible, TipoDeAtraccion tipoDeAtraccion, int id) {
 		this.nombre = nombre;
 		this.presupuesto = presupuesto;
 		this.tiempoDisponible = tiempoDisponible;
 		this.tipoDeAtraccion = tipoDeAtraccion;
 		this.itinerario = new Itinerario();
+		this.id = id;
 	}
 
 	@Override
@@ -47,9 +51,10 @@ public class PerfilUsuario {
 		return nombre;
 	}
 
-	public void reservarTiempoYdinero(Facturable atraccion) {
+	public void reservarTiempoYdinero(Facturable atraccion) throws SQLException {
 		this.tiempoDisponible -= atraccion.obtenerTiempoTotal();
 		this.presupuesto -= atraccion.obtenerCostoTotal();
+		UsuariosDAO.updateUsuarios(id, tiempoDisponible, presupuesto);
 	}
 
 	public boolean tieneTiempoYdinero() {

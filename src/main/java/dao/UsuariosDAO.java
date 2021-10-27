@@ -18,11 +18,11 @@ public class UsuariosDAO {
 	private static PerfilUsuario toPerfilUsuario(ResultSet result) throws SQLException {
 	    return new PerfilUsuario(result.getString("nombre"), result.getInt("presupuesto"), 
 	    		result.getInt("tiempo_disponible"), 
-	    		TipoDeAtraccion.values()[result.getInt("atraccion_preferida")-1]);
+	    		TipoDeAtraccion.valueOf(result.getString("nombre_tipo")), result.getInt("id"));
 	}
 	
 	public static List<PerfilUsuario> findAll() throws SQLException {
-		String query = "SELECT * FROM usuarios";
+		String query = "SELECT * FROM usuarios LEFT JOIN tipo_de_atracciones ON usuarios.atraccion_preferida = tipo_de_atracciones.id";
 		
 		Connection conn = ConnectionProvider.getConnection();
 		
@@ -49,9 +49,10 @@ public class UsuariosDAO {
     }
     
 	
-	public static void updateUsuarios(int id, int nuevoPresupuesto, int nuevoTiempoDisponible) throws SQLException {
-		String query = "UPDATE usuarios SET presupuesto = " + nuevoPresupuesto + "tiempo_disponible= " + nuevoTiempoDisponible 
-				+ "WHERE id = " + id;
+	public static void updateUsuarios(int id, double nuevoPresupuesto, double nuevoTiempoDisponible) throws SQLException {
+		String query = "UPDATE usuarios SET presupuesto = " + nuevoPresupuesto
+				+ ", tiempo_disponible = " + nuevoTiempoDisponible 
+				+ " WHERE id = " + id;
     	ConnectionProvider.executeUpdate(query);
 	}
 
