@@ -6,7 +6,6 @@ import model.Atraccion;
 import model.Facturable;
 import model.Promocion;
 import dao.UsuariosDAO;
-import model.Atraccion;
 import model.PerfilUsuario;
 
 import java.sql.SQLException;
@@ -18,6 +17,7 @@ public class App {
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
 		//dbc:sqlite:C:\Users\josel\eclipse-workspace\conexion_db_agenciadeturismo\tierramedia.db
+
 		
 		List<Facturable> listaDeFacturable = new ArrayList<>();
 		List<PerfilUsuario> listaDeUsuario;
@@ -31,6 +31,7 @@ public class App {
 		for (Promocion promocion : listaPromociones) {
 			listaDeFacturable.add(promocion);
 		}
+
 		
 		for (Atraccion atraccion : listaAtracciones) {
 			listaDeFacturable.add(atraccion);
@@ -38,7 +39,6 @@ public class App {
 		
 		Recomendador recomendador = new Recomendador(listaDeUsuario, listaDeFacturable);
 		recomendador.ofrecerSugerencias();
-		
 
 	}
 }
