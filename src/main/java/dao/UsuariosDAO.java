@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import jdbc.ConnectionProvider;
 import model.PerfilUsuario;
 import model.TipoDeAtraccion;
@@ -36,6 +35,24 @@ public class UsuariosDAO {
 		}
 		
 		return listaUsuarios;
+	}
+	
+	public static PerfilUsuario findByID(int id) throws SQLException {
+    	String query = "SELECT * FROM usuarios LEFT JOIN itinerarios ON itinerarios.usuario = usuarios.id where usuarios.id = " + id;
+    	
+    	Connection conn = ConnectionProvider.getConnection();
+		
+		PreparedStatement statement = conn.prepareStatement(query);
+		ResultSet results = statement.executeQuery();
+		
+		return toPerfilUsuario(results);
+    }
+    
+	
+	public static void updateUsuarios(int id, int nuevoPresupuesto, int nuevoTiempoDisponible) throws SQLException {
+		String query = "UPDATE usuarios SET presupuesto = " + nuevoPresupuesto + "tiempo_disponible= " + nuevoTiempoDisponible 
+				+ "WHERE id = " + id;
+    	ConnectionProvider.executeUpdate(query);
 	}
 
 }
