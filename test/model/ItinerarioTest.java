@@ -47,8 +47,8 @@ public class ItinerarioTest {
 		atraccionDePromo.add(atraccionMoria);
 		atraccionDePromo.add(atraccionMordor);
 		   
-		Facturable promoPorcentual = new PromoPorcentual(atraccionDePromo,TipoDeAtraccion.AVENTURA , "Promo 1", 0.5);
-		Facturable promoAxB = new PromoAxB(atraccionDePromo,TipoDeAtraccion.AVENTURA , "Promo 2", atraccionMordor);
+		Facturable promoPorcentual = new PromoPorcentual(atraccionDePromo,TipoDeAtraccion.AVENTURA , "Promo 1", 0.5,1);
+		Facturable promoAxB = new PromoAxB(atraccionDePromo,TipoDeAtraccion.AVENTURA , "Promo 2", atraccionMordor,2);
 
 		usuario.agregarAtraccion(promoPorcentual);
 			
@@ -61,7 +61,7 @@ public class ItinerarioTest {
 	public void poseeAtraccionTest2() throws SQLException {
 		atraccion.add(atraccionMoria);
 		atraccion.add(atraccionBosqueNegro);
-		Facturable promoPorcentual = new PromoPorcentual(atraccion,TipoDeAtraccion.AVENTURA , "Promo 1", 0.5);
+		Facturable promoPorcentual = new PromoPorcentual(atraccion,TipoDeAtraccion.AVENTURA , "Promo 1", 0.5,1);
 
 		usuario.agregarAtraccion(promoPorcentual);
 		Itinerario itinerario = usuario.getItinerario();

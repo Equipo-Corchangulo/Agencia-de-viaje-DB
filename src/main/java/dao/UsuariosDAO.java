@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import jdbc.ConnectionProvider;
+import model.Facturable;
 import model.PerfilUsuario;
 import model.TipoDeAtraccion;
 
@@ -16,14 +17,48 @@ import model.TipoDeAtraccion;
 public class UsuariosDAO {
 	
 	private static PerfilUsuario toPerfilUsuario(ResultSet result) throws SQLException {
-	    return new PerfilUsuario(result.getString("nombre"), result.getInt("presupuesto"), 
+		List<Facturable> listadeItinerario = new ArrayList<Facturable>();
+		
+		String atraccionesStr = result.getString("atracciones");
+		if(atraccionesStr != null)
+		{
+			String[] atraccionIdList = atraccionesStr.split("-");
+			getFacturableByIdList(atraccionIdList,false, listadeItinerario);
+		}
+		
+		String promoStr = result.getString("promociones");
+		if(promoStr != null) {
+			
+			String[] promoIdList= promoStr.split("-");
+			getFacturableByIdList(promoIdList,true, listadeItinerario);
+		}
+		
+		
+		
+	    return new PerfilUsuario(result.getString("nombre"), result.getDouble("presupuesto"), 
 	    		result.getInt("tiempo_disponible"), 
-	    		TipoDeAtraccion.valueOf(result.getString("nombre_tipo")), result.getInt("id"));
+	    		TipoDeAtraccion.valueOf(result.getString("nombre_tipo")), 
+	    		result.getInt("id"),
+	    		listadeItinerario);
+	}
+	
+	public static void getFacturableByIdList(String[] facturableList, boolean isPromo, List<Facturable> resultList) throws NumberFormatException, SQLException {
+		
+		for(String a : facturableList) {
+			if (!isPromo)
+				resultList.add(AtraccionesDAO.findByID(Integer.parseInt(a)));
+			else
+				resultList.add(PromocionDAO.findByID(Integer.parseInt(a)));
+		}
 	}
 	
 	public static List<PerfilUsuario> findAll() throws SQLException {
-		String query = "SELECT * FROM usuarios LEFT JOIN tipo_de_atracciones ON usuarios.atraccion_preferida = tipo_de_atracciones.id";
-		
+		String query = "SELECT usuarios.*, tipo.nombre_tipo, group_concat(itinerarios.atraccion,'-') AS atracciones," +
+				" group_concat(itinerarios.promocion,'-') AS promociones" +
+				" FROM usuarios" +
+				" LEFT JOIN tipo_de_atracciones AS 'tipo' ON usuarios.atraccion_preferida = tipo.id" +
+				" LEFT JOIN itinerarios ON usuarios.id = itinerarios.usuario" +
+				" GROUP BY usuarios.id";
 		Connection conn = ConnectionProvider.getConnection();
 		
 		PreparedStatement statement = conn.prepareStatement(query);

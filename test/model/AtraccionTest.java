@@ -23,9 +23,9 @@ public class AtraccionTest {
     public List<Facturable> promoP2 = new ArrayList<Facturable>();
     public List<Facturable> promoP3 = new ArrayList<Facturable>();
     
-    PromoAbsoluta p1 = new PromoAbsoluta(promoP1, TipoDeAtraccion.AVENTURA, "Promocion Absoluta", 10);
-    PromoPorcentual p2 = new PromoPorcentual(promoP2, TipoDeAtraccion.AVENTURA, "Pack Aventura", 30);
-	PromoAxB p3 = new PromoAxB(promoP3, TipoDeAtraccion.AVENTURA, "Promo AxB", atraccionErebor);
+    PromoAbsoluta p1 = new PromoAbsoluta(promoP1, TipoDeAtraccion.AVENTURA, "Promocion Absoluta", 10,1);
+    PromoPorcentual p2 = new PromoPorcentual(promoP2, TipoDeAtraccion.AVENTURA, "Pack Aventura", 30,2);
+	PromoAxB p3 = new PromoAxB(promoP3, TipoDeAtraccion.AVENTURA, "Promo AxB", atraccionErebor,3);
 
     @Test
     public void crearAtraccion() {

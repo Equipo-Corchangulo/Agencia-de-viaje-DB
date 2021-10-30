@@ -8,8 +8,8 @@ public class PromoAxB extends Promocion {
 	public Facturable atraccionExtra;
 
 	public PromoAxB(List<Facturable> listaDeAtracciones, TipoDeAtraccion tipoDePromocion
-			, String nombreDePromocion, Facturable atraccionExtra) {
-		super(listaDeAtracciones, tipoDePromocion, nombreDePromocion);
+			, String nombreDePromocion, Facturable atraccionExtra, int id) {
+		super(listaDeAtracciones, tipoDePromocion, nombreDePromocion, id);
 		this.atraccionExtra = atraccionExtra;
 	}
 
@@ -27,9 +27,15 @@ public class PromoAxB extends Promocion {
 	}
 
 	@Override
-	public void restarCupo() throws SQLException {
+	public void restarCupo(){
 		super.restarCupo();
 		atraccionExtra.restarCupo();
+	}
+	
+	@Override
+	public void update() throws SQLException {
+		super.update();
+		atraccionExtra.update();
 	}
 
 	@Override

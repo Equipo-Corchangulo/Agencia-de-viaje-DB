@@ -21,7 +21,7 @@ public class PromoPorcentualTest {
 	public List<Facturable> atraccion = new ArrayList<Facturable>();
 	public List<Facturable> atraccionDePromo = new ArrayList<Facturable>();
 		
-	PromoPorcentual promo_uno = new PromoPorcentual(atraccion, TipoDeAtraccion.AVENTURA, "Pack Aventura", 20);
+	PromoPorcentual promo_uno = new PromoPorcentual(atraccion, TipoDeAtraccion.AVENTURA, "Pack Aventura", 20,1);
 	
 
 	@Test

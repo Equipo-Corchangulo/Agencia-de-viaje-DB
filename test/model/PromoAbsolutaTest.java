@@ -11,7 +11,7 @@ public class PromoAbsolutaTest {
 
 	public List<Facturable> atraccion = new ArrayList<Facturable>();
 	
-	PromoAbsoluta promoAbs = new PromoAbsoluta(atraccion, TipoDeAtraccion.DEGUSTACION, "Promocion Absoluta", 11);
+	PromoAbsoluta promoAbs = new PromoAbsoluta(atraccion, TipoDeAtraccion.DEGUSTACION, "Promocion Absoluta", 11,1);
 
 	@Test
 	public void esPromocionTest() {

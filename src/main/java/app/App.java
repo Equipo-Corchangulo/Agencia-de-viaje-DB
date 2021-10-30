@@ -23,10 +23,10 @@ public class App {
 		List<PerfilUsuario> listaDeUsuario;
 		List<Atraccion> listaAtracciones;
 		List<Promocion> listaPromociones;
-		
-		listaDeUsuario = UsuariosDAO.findAll();
 		listaAtracciones = AtraccionesDAO.findAll();
 		listaPromociones = PromocionDAO.findAll();
+		
+		listaDeUsuario = UsuariosDAO.findAll();
 		
 		for (Promocion promocion : listaPromociones) {
 			listaDeFacturable.add(promocion);

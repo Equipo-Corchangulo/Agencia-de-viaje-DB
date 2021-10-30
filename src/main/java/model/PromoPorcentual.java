@@ -7,8 +7,8 @@ public class PromoPorcentual extends Promocion {
 	private double porcentajeDescuento;
 
 	public PromoPorcentual(List<Facturable> listaDeAtracciones, TipoDeAtraccion tipoDePromocion
-			, String nombreDePromocion, double porcentajeDescuento) {
-		super(listaDeAtracciones, tipoDePromocion, nombreDePromocion);
+			, String nombreDePromocion, double porcentajeDescuento, int id) {
+		super(listaDeAtracciones, tipoDePromocion, nombreDePromocion, id);
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
 

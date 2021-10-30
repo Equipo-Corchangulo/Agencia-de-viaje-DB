@@ -1,23 +1,17 @@
 package app;
 import java.io.*;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import jdbc.ConnectionProvider;
 import model.Facturable;
 import model.PerfilUsuario;
 
 public class Recomendador {
-	public static final String ANSI_BLACK = "\u001B[30m";
-	public static final String ANSI_RED = "\u001B[31m";
-	public static final String ANSI_GREEN = "\u001B[32m";
-	public static final String ANSI_YELLOW = "\u001B[33m";
-	public static final String ANSI_BLUE = "\u001B[34m";
-	public static final String ANSI_PURPLE = "\u001B[35m";
-	public static final String ANSI_CYAN = "\u001B[36m";
-	public static final String ANSI_WHITE = "\u001B[37m";
 
 	private List<PerfilUsuario> listaDeUsuarios;
 
@@ -40,7 +34,7 @@ public class Recomendador {
 		Scanner teclado = new Scanner(System.in);
 		while (entradaDelUsuario != 0 && entradaDelUsuario != 1){
 
-			System.out.println(ANSI_CYAN+"Presione 1 para agregar esta atraccion a su itinerario y 0 para pasar a la siguiente recomendacion.");
+			System.out.println("Presione 1 para agregar esta atraccion a su itinerario y 0 para pasar a la siguiente recomendacion.");
 			if (teclado.hasNextInt())
 				entradaDelUsuario = teclado.nextInt();
 			else
@@ -62,8 +56,28 @@ public class Recomendador {
 			Collections.sort(listaDeFacturables, new ComparadorDeFacturable(usuario.getTipoDeAtraccion()));
 
 			iterarSugerencias(usuario);
-			//ManejadorDeArchivo.guardarItinerarioEnArchivo(usuario);
-			//TODO guardar itinerario en base de datos
+			this.guardarItinerarioEnBD(usuario);
+			System.out.println("================================");
+			System.out.println("Resultados");
+			System.out.println(usuario);
+			System.out.println(usuario.getItinerario());
+			System.out.println("==============================");
+			System.out.println();
+			
+		}
+	}
+	
+	public void guardarItinerarioEnBD(PerfilUsuario usuario) throws SQLException {
+		Connection conn = ConnectionProvider.getConnection();
+		conn.setAutoCommit(false);
+		try {
+			usuario.update();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			conn.rollback();
+		} finally {
+			conn.commit();
 		}
 	}
 	

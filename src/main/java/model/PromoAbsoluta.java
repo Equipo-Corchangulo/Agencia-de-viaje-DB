@@ -6,8 +6,8 @@ public class PromoAbsoluta extends Promocion {
 
 	private double costoFijo;
 
-	public PromoAbsoluta(List<Facturable> listaDeAtracciones, TipoDeAtraccion tipoDePromocion, String nombreDePromocion, double costoFijo) {
-		super(listaDeAtracciones, tipoDePromocion, nombreDePromocion);
+	public PromoAbsoluta(List<Facturable> listaDeAtracciones, TipoDeAtraccion tipoDePromocion, String nombreDePromocion, double costoFijo, int id) {
+		super(listaDeAtracciones, tipoDePromocion, nombreDePromocion,id);
 		this.costoFijo = costoFijo;
 	}
 

@@ -25,7 +25,7 @@ public class PromoAxBTest {
 	public List<Facturable> atraccion = new ArrayList<Facturable>();
 	public List<Facturable> atraccionDePromo = new ArrayList<Facturable>();
 		
-	PromoAxB promoAxB = new PromoAxB(atraccion, TipoDeAtraccion.AVENTURA, "Promo AxB", atraccionMordor);
+	PromoAxB promoAxB = new PromoAxB(atraccion, TipoDeAtraccion.AVENTURA, "Promo AxB", atraccionMordor,1);
 	
 
 	@Test

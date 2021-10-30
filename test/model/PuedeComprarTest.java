@@ -19,10 +19,10 @@ public class PuedeComprarTest {
 			
 			public List<Facturable> lista01 = new ArrayList<Facturable>();
 			
-			PromoAbsoluta p1 = new PromoAbsoluta(lista01, TipoDeAtraccion.AVENTURA, "Promocion Absoluta", 10);
-			PromoPorcentual p2 = new PromoPorcentual(lista01, TipoDeAtraccion.AVENTURA, "Pack Aventura", 30);
-			PromoAxB p3 = new PromoAxB(lista01, TipoDeAtraccion.AVENTURA, "Promo AxB", a2);
-			PromoAbsoluta p4 = new PromoAbsoluta(lista01, TipoDeAtraccion.AVENTURA, "Promocion Absoluta", 5);
+			PromoAbsoluta p1 = new PromoAbsoluta(lista01, TipoDeAtraccion.AVENTURA, "Promocion Absoluta", 10,1);
+			PromoPorcentual p2 = new PromoPorcentual(lista01, TipoDeAtraccion.AVENTURA, "Pack Aventura", 30,2);
+			PromoAxB p3 = new PromoAxB(lista01, TipoDeAtraccion.AVENTURA, "Promo AxB", a2,3);
+			PromoAbsoluta p4 = new PromoAbsoluta(lista01, TipoDeAtraccion.AVENTURA, "Promocion Absoluta", 5,4);
 			
 	@Test
 	
