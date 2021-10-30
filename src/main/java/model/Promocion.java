@@ -15,11 +15,18 @@ public abstract class Promocion  implements Facturable {
 	public TipoDeAtraccion tipoDeAtraccion;
 
 	public String nombreDePromocion;
+	public int id;
 
-	public Promocion(List<Facturable> listaDeAtracciones, TipoDeAtraccion tipoDeAtraccion, String nombreDePromocion) {
+	public Promocion(List<Facturable> listaDeAtracciones, TipoDeAtraccion tipoDeAtraccion, String nombreDePromocion, int id) {
 		this.listaDeAtracciones = listaDeAtracciones;
 		this.tipoDeAtraccion = tipoDeAtraccion;
 		this.nombreDePromocion = nombreDePromocion;
+		this.id = id;
+	}
+	
+	@Override
+	public int getID() {
+		return this.id;
 	}
 
 	@Override
@@ -50,12 +57,20 @@ public abstract class Promocion  implements Facturable {
 	}
 
 	@Override
-	public void restarCupo() throws SQLException {
+	public void restarCupo(){
 		for(Facturable atraccion : listaDeAtracciones){
 			atraccion.restarCupo();
 		}
 
 	}
+	
+	@Override
+	public void update() throws SQLException {
+		for(Facturable atraccion : listaDeAtracciones){
+			atraccion.update();
+		}
+	}
+	
 	@Override
 	public double obtenerTiempoTotal() {
 		double tiempoTotal = 0;

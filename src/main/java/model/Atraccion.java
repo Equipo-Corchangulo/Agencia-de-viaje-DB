@@ -22,6 +22,8 @@ public class Atraccion implements Facturable {
 		this.tipoAtraccion = tipoAtraccion;
 		this.ID = ID;
 	}
+	
+	@Override
 	public int getID(){
 		return  this.ID;
 	}
@@ -52,10 +54,14 @@ public class Atraccion implements Facturable {
 	}
 
 	@Override
-	public void restarCupo() throws SQLException {
+	public void restarCupo(){
 		this.cupoDiario--;
-		AtraccionesDAO.editarCupoDeAtraccion(this.ID, this.cupoDiario);
 
+	}
+	@Override
+	public void update() throws SQLException {
+
+		AtraccionesDAO.editarCupoDeAtraccion(this.ID, this.cupoDiario);
 	}
 
 	public int getCupo() {

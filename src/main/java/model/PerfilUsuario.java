@@ -2,7 +2,10 @@ package model;
 
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
+
+import dao.UsuariosDAO;
 
 public class PerfilUsuario {
 
@@ -12,14 +15,30 @@ public class PerfilUsuario {
 	private String nombre;
 	private TipoDeAtraccion tipoDeAtraccion;
 	private Itinerario itinerario;
+	private int id;
 
-	public PerfilUsuario(String nombre, double presupuesto, int tiempoDisponible, TipoDeAtraccion tipoDeAtraccion) {
+	public PerfilUsuario(String nombre, double presupuesto, int tiempoDisponible, TipoDeAtraccion tipoDeAtraccion, int id) {
 		this.nombre = nombre;
 		this.presupuesto = presupuesto;
 		this.tiempoDisponible = tiempoDisponible;
 		this.tipoDeAtraccion = tipoDeAtraccion;
 		this.itinerario = new Itinerario();
+		this.id = id;
 	}
+	
+	
+
+	public PerfilUsuario(String nombre, double presupuesto, int tiempoDisponible, TipoDeAtraccion tipoDeAtraccion, int id, List<Facturable> listaDeItinerario) {
+		super();
+		this.presupuesto = presupuesto;
+		this.tiempoDisponible = tiempoDisponible;
+		this.nombre = nombre;
+		this.tipoDeAtraccion = tipoDeAtraccion;
+		this.id = id;
+		this.itinerario = new Itinerario (listaDeItinerario);
+	}
+
+
 
 	@Override
 	public String toString() {
@@ -47,7 +66,7 @@ public class PerfilUsuario {
 		return nombre;
 	}
 
-	public void reservarTiempoYdinero(Facturable atraccion) {
+	public void reservarTiempoYdinero(Facturable atraccion){
 		this.tiempoDisponible -= atraccion.obtenerTiempoTotal();
 		this.presupuesto -= atraccion.obtenerCostoTotal();
 	}
@@ -69,8 +88,14 @@ public class PerfilUsuario {
 	public int hashCode() {
 		return Objects.hash(getPresupuesto(), getTiempoDisponible(), getNombre(), getTipoDeAtraccion());
 	}
+	
+	public void update() throws SQLException {
+		UsuariosDAO.updateUsuarios(id, this.presupuesto, this.tiempoDisponible);
+		this.itinerario.update(this.id);
+	}
 
 	public void agregarAtraccion(Facturable atraccion) throws SQLException {
+		
 		this.itinerario.agregarAtraccion(atraccion);
 		atraccion.restarCupo();
 		this.reservarTiempoYdinero(atraccion);

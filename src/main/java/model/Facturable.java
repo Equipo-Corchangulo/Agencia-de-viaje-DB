@@ -10,12 +10,16 @@ public interface Facturable {
 
 	 boolean hayCupo();
 
-	 void restarCupo() throws SQLException;
+	 void restarCupo();
 
 	 boolean esPromocion();
 
 	 TipoDeAtraccion getTipo();
 
 	 boolean seEncuentraEnElFacturable(Facturable facturable);
+	 
+	 void update() throws SQLException;
+	 
+	 int getID();
 
 }
